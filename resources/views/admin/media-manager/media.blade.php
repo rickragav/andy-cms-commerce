@@ -1,9 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('content')
-    @include('admin.media-manager.main-content-media')
-    @include('admin.media-manager.add-media')
-    @include('admin.media-manager.edit-media')
+<h1>Media Manager</h1>
 @endsection
 
 

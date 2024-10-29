@@ -10,6 +10,14 @@ if (!function_exists('staticAsset')) {
     }
 }
 
+if (!function_exists('system_version')) {
+    # return path for static assets
+    function system_version()
+    {
+        return 'V1.0.0';
+    }
+}
+
 
 if (!function_exists('getFileType')) {
     #  Get file Type
