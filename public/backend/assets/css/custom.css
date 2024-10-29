@@ -1,0 +1,25 @@
+.gallery .image-overlay {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    background-color: #2c3782;
+    border-radius: 0.25rem;
+    font-size: 2.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+}
+.gallery .image-overlay .icon {
+    color: #fff;
+}
+.gallery-content {
+    position: relative;
+}
+.gallery-content:hover .image-overlay {
+    visibility: visible;
+    opacity: 0.8;
+}

@@ -3,15 +3,18 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\MediaManager;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
 
 class MediaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index():View
+    public function index(): View
     {
         return view('admin.media-manager.media');
     }
@@ -29,7 +32,24 @@ class MediaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->hasFile('media_file')) {
+            $mediaFile = new MediaManager;
+            $mediaFile->user_id = Auth::user()->id;
+
+            $mediaFile->media_file = $request->file('media_file')->store('uploads/media');
+            $mediaFile->media_size = $request->file('media_file')->getSize();
+            $mediaFile->media_name = $request->file('media_file')->getClientOriginalName();
+            $mediaFile->media_extension = $request->file('media_file')->getClientOriginalExtension();
+
+            if (getFileType(Str::lower($mediaFile->media_extension)) != null) {
+                $mediaFile->media_type = getFileType(Str::lower($mediaFile->media_extension));
+            } else {
+                $mediaFile->media_type = "unknown";
+            }
+
+            $mediaFile->save();
+            return true;
+        }
     }
 
     /**
