@@ -38,7 +38,7 @@ require __DIR__.'/auth.php';
 
 # media files routes
 Route::group(['prefix' => '', 'middleware' => ['auth']], function () {
-    Route::get('/media-manager/get-files', [MediaController::class, 'index'])->name('uppy.index');
+    Route::get('/media-manager/get-files', [MediaController::class, 'files'])->name('uppy.index');
     Route::get('/media-manager/get-selected-files', [MediaController::class, 'selectedFiles'])->name('uppy.selectedFiles');
     Route::post('/media-manager/add-files', [MediaController::class, 'store'])->name('uppy.store');
     Route::get('/media-manager/delete-files/{id}', [MediaController::class, 'delete'])->name('uppy.delete');

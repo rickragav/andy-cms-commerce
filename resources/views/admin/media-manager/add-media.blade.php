@@ -1,47 +1,89 @@
-  <!-- Add Page-->
-  <div class="modal fade" tabindex="-1" role="dialog" id="addMedia">
-    <div class="modal-dialog modal-md" role="document">
-        <div class="modal-content">
-            <a href="#" class="close" data-bs-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
-            <div class="modal-body modal-body-md">
-                <h5 class="modal-title">Add Media</h5>
-                <form action="#" class="mt-4">
-                    <div class="row g-gs">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label" for="addName">Name</label>
-                                <input type="text" class="form-control" id="addName" placeholder="Plant" value="Plant">
-                            </div>
-                        </div><!-- .col -->
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label" for="addAlt">Alter Text</label>
-                                <input type="text" class="form-control" id="addAlt" placeholder="Feature Image" value="Feature Image">
-                            </div>
-                        </div><!-- .col -->
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label class="form-label" for="category">Featured Image</label>
-                                <div class="upload-zone small bg-lighter my-2">
-                                    <div class="dz-message">
-                                        <span class="dz-message-text">Drag and drop file</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
-                                <li>
-                                    <button type="submit" data-bs-dismiss="modal" class="btn btn-primary">Update</button>
-                                </li>
-                                <li>
-                                    <a href="#" class="link link-light" data-bs-dismiss="modal">Cancel</a>
-                                </li>
-                            </ul>
-                        </div><!-- .col -->
-                    </div><!-- .row -->
-                </form>
-            </div><!-- .modal-body -->
-        </div><!-- .modal-content -->
-    </div><!-- .modal-dialog -->
-</div><!-- .modal -->
+@extends('admin.layouts.master')
+
+<?php
+// $title_var = "title_" . @Helper::currentLanguage()->code;
+// $title_var2 = "title_" . config('smartend.default_language');
+// if ($WebmasterSection->$title_var != "") {
+//     $WebmasterSectionTitle = $WebmasterSection->$title_var;
+// } else {
+//     $WebmasterSectionTitle = $WebmasterSection->$title_var2;
+// }
+$WebmasterSectionTitle = 'New Photo';
+?>
+@section('title', $WebmasterSectionTitle)
+@push('after-styles')
+@endpush
+@section('content')
+    <div class="padding">
+        <div class="box">
+            <div class="box-header dker">
+                <h3>{!! $WebmasterSectionTitle !!}</h3>
+                <small>
+                    <a href="">Home</a> /
+                    <a>{!! $WebmasterSectionTitle !!}</a>
+                </small>
+            </div>
+            <div class="box-tool">
+                <ul class="nav">
+                    <li class="nav-item inline">
+                        <a class="nav-link" href="">
+                            <i class="material-icons md-18">×</i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="box-body p-a-2">
+
+                <div class="form-group row">
+                    <label for="icon" class="col-sm-2 form-control-label">Photo</label>
+                    {{-- <div class="col-sm-10">
+                        {!! Form::file('customField', [
+                            'class' => 'form-control',
+                            'id' => 'customField',
+                            'required' => '',
+                            'accept' => 'image/*',
+                        ]) !!}
+                    </div> --}}
+                    <div class="col-sm-10 uppy-drag-drop-area"></div>
+
+                </div>
+                <div class="form-group row">
+                    <label for="icon" class="col-sm-2 form-control-label">Tags</label>
+                    <div class="col-sm-10">
+                        {!! Form::text('tags', '', ['autocomplete' => 'off', 'class' => 'form-control form-tags']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="link_status" class="col-sm-2 form-control-label">Status</label>
+                    <div class="col-sm-10">
+                        <select name="popup_id" class="form-control c-select">
+                            <option value="">- - Select - -</option>
+                            <option value="1">Active</option>
+                            <option value="0">DeActive</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row m-t-md">
+                    <div class="offset-sm-2 col-sm-10">
+                        <button type="submit" class="btn btn-md btn-primary m-t"><i class="material-icons">
+                                &#xe31b;</i> Save</button>
+                        <a href="" class="btn btn-md btn-default m-t"><i class="material-icons">
+                                &#xe5cd;</i>Cancel</a>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+@endsection
+
+@push('after-scripts')
+    <script>
+        $('.form-tags').tagsInput({
+            placeholder: 'Type tag and click enter',
+
+        });
+    </script>
+@endpush

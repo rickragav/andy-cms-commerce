@@ -5,18 +5,19 @@
         ImageEditor,
         DropTarget,
         XHRUpload
-    } from "{{ staticAsset('backend/assets/js/libs/uppy.min.js') }}"
+    } from "{{ staticAsset('backend/assets/js/vendors/uppy.min.js') }}"
     var uppy = new Uppy({
             restrictions: {
                 allowedFileTypes: TT.allowedFileTypes,
             }
         })
         .use(Dashboard, {
-            inline: true,
-            target: '.uppy-drag-drop-area',
+            inline: false,
+            // target: '.uppy-drag-drop-area',
             proudlyDisplayPoweredByUppy: false,
             hidePauseResumeButton: true,
             width: '100%',
+            hideUploadButton: false,
             height: 'auto'
         })
         .use(ImageEditor, {
@@ -36,8 +37,17 @@
         })
 
     uppy.on('complete', (result) => {
-        getMediaFiles();
+        console.log('result', result)
     })
+
+    // Ensure uppy is available in the jQuery scope
+    $(document).ready(function() {
+        $('.add-photo').on('click', function() {
+            console.log('Button clicked');
+            // Ensure uppy Dashboard opens in modal view
+            uppy.getPlugin('Dashboard').openModal();
+        });
+    });
 </script>
 
 <script>

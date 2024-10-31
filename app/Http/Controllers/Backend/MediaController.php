@@ -24,7 +24,7 @@ class MediaController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.media-manager.add-media');
     }
 
     /**
@@ -82,5 +82,19 @@ class MediaController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function files(){
+        $searchKey  = null;
+        $type       = null;
+
+        $mediaFiles = MediaManager::query()->get();
+
+        return [
+            'status' => true,
+            // 'recentFiles' => view('backend.inc.media-manager.recent', compact('recentFiles'))->render(),
+            // 'mediaFiles' => view('backend.inc.media-manager.previous', compact('mediaFiles'))->render(),
+            'mediaQuery' => $mediaFiles
+        ];
     }
 }

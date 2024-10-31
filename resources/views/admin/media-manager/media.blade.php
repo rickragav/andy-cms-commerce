@@ -27,9 +27,9 @@ $WebmasterSectionTitle = 'Media Manager';
             <div class="box-tool box-tool-lg">
                 <ul class="nav">
                     <li class="nav-item inline">
-                        <a class="btn primary" href="">
+                        <a class="btn primary add-photo">
                             <i class="material-icons">&#xe02e;</i>
-                            <span class="phone-hide">Add {!! $WebmasterSectionTitle !!}</span>
+                            <span class="phone-hide">Add Photo</span>
                         </a>
                     </li>
                     <li class="nav-item inline">
@@ -46,10 +46,13 @@ $WebmasterSectionTitle = 'Media Manager';
                         <button type="button" class="btn p-x-sm white" data-toggle="dropdown">
                             <i class="material-icons md-24 opacity-8">&#xe3ec;</i>
                         </button>
-                        {{-- @include("dashboard.topics.list-columns") --}}
+
                     </li>
                 </ul>
             </div>
+
+
+
             <div>
                 <div class="table-responsive">
                     <table class="table table-bordered" style="width: 100%" id="media_manager">
@@ -68,6 +71,8 @@ $WebmasterSectionTitle = 'Media Manager';
             </div>
         </div>
     </div>
+
+
 @endsection
 @push('after-scripts')
     <script src="{{ asset('assets/dashboard/js/datatables/datatables.min.js') }}"></script>
@@ -95,11 +100,20 @@ $WebmasterSectionTitle = 'Media Manager';
                 "processing": true,
                 "serverSide": true,
                 "searching": false,
-                "pageLength": 10,
+                "pageLength": 30,
                 "lengthMenu": [
                     [10, 20, 30, 50, 75, 100, 200, -1],
                     [10, 20, 30, 50, 75, 100, 200, "All"]
                 ],
+                "ajax": {
+                    "url": "{{ route('uppy.index') }}",
+                    "dataType": "json",
+                    "type": "GET",
+                    "data": function (data) {
+                        console.log(data)
+                    }
+
+                },
 
             })
         })

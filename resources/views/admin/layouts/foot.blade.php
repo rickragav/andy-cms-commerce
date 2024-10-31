@@ -2,7 +2,6 @@
     var public_lang = "";
     var public_folder_path = "{{ asset('') }}";
     var first_day_of_week = "";
-
 </script>
 @stack('before-scripts')
 <!-- jQuery -->
@@ -28,6 +27,11 @@
 <script src="{{ asset('assets/dashboard/js/scripts/ui-scroll-to.js') }}" defer></script>
 <script src="{{ asset('assets/dashboard/js/scripts/ui-toggle-class.js') }}" defer></script>
 <script src="{{ asset('assets/dashboard/js/sweetalert/sweetalert.min.js') }}"></script>
+<script src="{{ asset('assets/dashboard/js/jquery-ui/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('assets/dashboard/js/tags-input/tagsinput.min.js') }}"></script>
+
+
+@include('backend.inc.scripts')
 
 
 <script src="{{ asset('assets/dashboard/js/scripts/app.js') }}?v={{ system_version() }}" defer></script>
